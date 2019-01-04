@@ -5,13 +5,17 @@
     </button>
     <ion-title>
       <div class="header-logo">
-        <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image>
+        <preload-image [ratio]="{w:717, h:123}" src="./assets/images/header_logo_white.png"></preload-image>
       </div>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="listing-content">
+  <ion-searchbar mode="md" #searchbar showCancelButton="true" placeholder="Search" [(ngModel)]="searchKeyword" 
+    (ionInput)="onSearchByKeyword($event)" (ionCancel)="onSearchByKeywordCancel($event)" debounce="1000">
+  </ion-searchbar>
+  <!--
   <background-image class="image-heading" [src]="listing.banner_image">
     <ion-row class="heading-row">
       <ion-col no-padding offset-100>
@@ -19,11 +23,19 @@
       </ion-col>
     </ion-row>
   </background-image>
+  -->
   <h4 class="categories-title">{{'POPULAR' | translate}}</h4>
   <ion-scroll scrollX="true" class="horizontal-categories">
     <ion-row class="categories-row">
       <ion-col width-30 class="horizontal-item"  *ngFor="let popular of listing.populars">
-        <preload-image [ratio]="{w:1, h:1}" [src]="popular.image" title="popular.title"></preload-image>
+        <ion-card class="card-md">
+          <preload-image [ratio]="{w:1, h:1}" [src]="popular.image" title="popular.title"></preload-image>
+          <ion-card-content>
+            <ion-card-title style="font-size:10px; text-align:center">
+                {{popular.title}}
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-scroll>

@@ -7,6 +7,10 @@ import 'rxjs/Rx';
 import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
 
+import moment from 'moment'
+
+
+
 
 @Component({
   selector: 'listing-page',
@@ -19,6 +23,11 @@ export class ListingPage {
     public nav: NavController,
     public listingService: ListingService
   ) {}
+
+  onSearchByKeyword(event: any) {
+    alert('onSearchByKeyword: onSearchByKeyword invoked' + event);
+    alert('onSearchByKeyword: time: ' + moment().valueOf());
+  }
 
   ionViewDidLoad() {
     this.listingService

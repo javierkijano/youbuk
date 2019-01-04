@@ -14,11 +14,12 @@
     "sourceMap": true,
     "target": "es5"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "node_modules/moment/moment.js"
   ],
   "compileOnSave": false,
   "atom": {

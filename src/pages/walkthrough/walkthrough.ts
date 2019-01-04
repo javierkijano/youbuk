@@ -3,6 +3,8 @@ import { NavController, Slides } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+
 
 @Component({
   selector: 'walkthrough-page',
@@ -11,10 +13,12 @@ import { SignupPage } from '../signup/signup';
 export class WalkthroughPage {
 
   lastSlide = false;
+  main_page: { component: any };
 
   @ViewChild('slider') slider: Slides;
 
   constructor(public nav: NavController) {
+    this.main_page = { component: TabsNavigationPage };
 
   }
 
@@ -23,8 +27,12 @@ export class WalkthroughPage {
     // this.nav.setRoot(TabsNavigationPage);
 
     // Or you can skip to last slide (login/signup slide)
-    this.lastSlide = true;
-    this.slider.slideTo(this.slider.length());
+    if (this.lastSlide != true) {
+      this.lastSlide = true;
+      this.slider.slideTo(this.slider.length());
+    } else {
+      this.nav.setRoot(TabsNavigationPage);
+    }
   }
 
   onSlideChanged() {

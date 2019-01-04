@@ -1,7 +1,10 @@
 <ion-header class="walkthrough-header">
   <ion-toolbar>
     <ion-buttons end>
-      <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">{{'SKIP' | translate}}</button>
+      <!--
+      <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">{{'CERRAR' | translate}}</button>
+      -->
+      <button ion-button class="skip-button" (click)="skipIntro()" >{{'CERRAR' | translate}}</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,12 +17,12 @@
           <preload-image [ratio]="{w:1, h:1}" src="./assets/images/logo_white.png" alt="app logo" title="ion2FullApp"></preload-image>
         </ion-col>
       </ion-row>
-      <h2 class="main-title">{{'WELCOME!' | translate}}</h2>
+      <h2 class="main-title">{{'Bienvenido!' | translate}}</h2>
       <p class="intro-text">
-        This is the new <b>Ionic 3</b> Full App Template
+        Esta es la nueva aplicación de <b>YouBuk</b> Disfrútala.
       </p>
       <p class="intro-text">
-        ELITE version
+        YouBuk Beta version v0.1
       </p>
     </ion-slide>
     <ion-slide class="slide-2">
@@ -28,12 +31,12 @@
           <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-2-img.png" alt="slide 2 img" title="ion2FullApp"></preload-image>
         </ion-col>
       </ion-row>
-      <h2 class="main-title">{{'WAKE_UP!' | translate}}</h2>
+      <h2 class="main-title">{{'¡DESPIERTA!' | translate}}</h2>
       <p class="intro-text">
-        We should get started.
+        Ahora empezamos.
       </p>
       <p class="intro-text">
-        Here we have a beautiful walkthrough
+        ¡Aprende a utilizar YouBuk!
       </p>
     </ion-slide>
     <ion-slide class="slide-3">
@@ -42,9 +45,9 @@
           <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-3-img.png" alt="slide 3 img" title="ion2FullApp"></preload-image>
         </ion-col>
       </ion-row>
-      <h2 class="main-title">{{'GET_READY!' | translate}}</h2>
+      <h2 class="main-title">{{'¡Prepárate!' | translate}}</h2>
       <p class="intro-text">
-        Soon your app will look and feel awesome!
+        ¡Dentro de poco esta aplicación estará a punto!
       </p>
     </ion-slide>
     <ion-slide class="slide-4">
@@ -53,12 +56,12 @@
           <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-4-img.png" alt="slide 4 img" title="ion2FullApp"></preload-image>
         </ion-col>
       </ion-row>
-      <h2 class="main-title">{{'ALMOST_DONE!' | translate}}</h2>
+      <h2 class="main-title">{{'Ya casi estamos!' | translate}}</h2>
       <p class="intro-text">
-        Log in to your account.
+        Haz Log in en tu cuenta de usuario.
       </p>
       <p class="intro-text">
-        We are ready to rock!
+        ¡Estamos preparados para empezar!
       </p>
       <div class="button-bar">
         <button ion-button primary (click)="goToLogin()">{{'LOG_IN' | translate}}</button>

@@ -78,10 +78,9 @@ listing-page {
 			}
 
 			preload-image {
-				border-radius: 50%;
-
+				border-radius: 0%;
 				img	{
-					border-radius: 50%;
+					border-radius: 0%;
 				}
 			}
 
@@ -99,7 +98,11 @@ listing-page {
 			.horizontal-item
 			{
 				padding: 0px 0px 0px $categories-horizontal-list-padding;
+				.card-md {
+					width: 100%;
+				}
 			}
+
 		}
 
 		.grid-categories
