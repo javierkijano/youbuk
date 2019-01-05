@@ -8,6 +8,7 @@ import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
 
 import moment from 'moment'
+import { SearchServicePage } from '../search-service/search-service';
 
 
 
@@ -25,8 +26,11 @@ export class ListingPage {
   ) {}
 
   onSearchByKeyword(event: any) {
-    alert('onSearchByKeyword: onSearchByKeyword invoked' + event);
-    alert('onSearchByKeyword: time: ' + moment().valueOf());
+    //alert('onSearchByKeyword: onSearchByKeyword invoked' + event);
+    //alert('onSearchByKeyword: time: ' + moment().valueOf());
+    console.log("search event in search");
+    this.nav.push(SearchServicePage, {initialText: event.target.value});
+    console.log("coming back from SearchServicePage");
   }
 
   ionViewDidLoad() {

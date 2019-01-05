@@ -7,9 +7,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
+import { SearchServicePageModule } from '../pages/search-service/search-service.module';
 
 //pages
 import { ListingPage } from '../pages/listing/listing';
+// because loaded as module
+//import { SearchServicePage } from '../pages/search-service/search-service';
 import { FeedPage } from '../pages/feed/feed';
 import { FollowersPage } from '../pages/followers/followers';
 import { LayoutsPage } from '../pages/layouts/layouts';
@@ -39,6 +42,7 @@ import { GoogleLoginPage } from '../pages/google-login/google-login';
 import { TwitterLoginPage } from '../pages/twitter-login/twitter-login';
 import { ContactCardPage } from '../pages/contact-card/contact-card';
 import { VideoPlaylistPage } from '../pages/video-playlist/video-playlist';
+
 
 //firebase integration
 import { FirebaseFeedPage } from '../pages/firebase-integration/firebase-feed/firebase-feed';
@@ -118,6 +122,8 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     MyApp,
     ListingPage,
+    //imported as module
+    //SearchServicePage,
     FeedPage,
     FollowersPage,
     LayoutsPage,
@@ -180,6 +186,7 @@ export function createTranslateLoader(http: HttpClient) {
     GoogleMap
   ],
   imports: [
+    SearchServicePageModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
