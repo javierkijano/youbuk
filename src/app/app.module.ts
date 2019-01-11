@@ -1,5 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, NavController } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -8,7 +8,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
 import { SearchServicePageModule } from '../pages/search-service/search-service.module';
-
 //pages
 import { ListingPage } from '../pages/listing/listing';
 // because loaded as module
@@ -36,7 +35,7 @@ import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { FormValidationsPage } from '../pages/form-validations/form-validations';
 import { FunctionalitiesPage } from '../pages/functionalities/functionalities';
-import { MapsPage } from '../pages/maps/maps';
+import { MapsPage} from '../pages/maps/maps';
 import { FacebookLoginPage } from '../pages/facebook-login/facebook-login';
 import { GoogleLoginPage } from '../pages/google-login/google-login';
 import { TwitterLoginPage } from '../pages/twitter-login/twitter-login';
@@ -70,7 +69,7 @@ import { ShowHideInput } from '../components/show-hide-password/show-hide-input'
 import { ColorRadio } from '../components/color-radio/color-radio';
 import { CounterInput } from '../components/counter-input/counter-input';
 import { Rating } from '../components/rating/rating';
-import { GoogleMap } from '../components/google-map/google-map';
+//import { GoogleMap } from '../components/google-map/google-map';
 import { VideoPlayerModule } from '../components/video-player/video-player.module';
 import { ValidatorsModule } from '../components/validators/validators.module';
 
@@ -183,7 +182,7 @@ export function createTranslateLoader(http: HttpClient) {
     ColorRadio,
     CounterInput,
     Rating,
-    GoogleMap
+    //GoogleMap
   ],
   imports: [
     SearchServicePageModule,
@@ -261,6 +260,7 @@ export function createTranslateLoader(http: HttpClient) {
     BlogCategoriesPage
   ],
   providers: [
+    MapsPage,
     FeedService,
     ListingService,
     ProfileService,

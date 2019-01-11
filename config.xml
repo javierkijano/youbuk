@@ -90,8 +90,6 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <engine name="android" spec="6.3.0" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-crop" spec="^0.3.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
@@ -130,4 +128,6 @@
     <plugin name="cordova-plugin-admob-free" spec="^0.18.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
+    <engine name="android" spec="6.3.0" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

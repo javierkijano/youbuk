@@ -1,13 +1,14 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, Directive, ViewChild, OnInit, Injectable,ElementRef, EventEmitter } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { Geolocation} from '@ionic-native/geolocation';
 import { Keyboard } from '@ionic-native/keyboard';
 
 import { Observable } from 'rxjs/Observable';
 
-import { GoogleMap } from "../../components/google-map/google-map";
+//import { GoogleMap } from "../../components/google-map/google-map";
 import { GoogleMapsService } from "./maps.service";
 import { MapsModel, MapPlace } from './maps.model';
+
 
 @Component({
   selector: 'maps-page',
@@ -15,9 +16,14 @@ import { MapsModel, MapPlace } from './maps.model';
 })
 
 export class MapsPage implements OnInit {
-  @ViewChild(GoogleMap) _GoogleMap: GoogleMap;
   map_model: MapsModel = new MapsModel();
   toast: any;
+
+  public $mapReady: EventEmitter<any> = new EventEmitter();
+  public _mapIdledOnce: boolean = false;
+  public _el: HTMLElement;
+  @ViewChild("mygooglemap", { read: ElementRef }) googleMap: ElementRef;
+  
 
   constructor(
     public nav: NavController,
@@ -25,19 +31,38 @@ export class MapsPage implements OnInit {
     public toastCtrl: ToastController,
     public GoogleMapsService: GoogleMapsService,
     public geolocation: Geolocation,
-    public keyboard: Keyboard
+    public keyboard: Keyboard,
   ) {
   }
 
   ngOnInit() {
+    this.initMap()
+  }
+
+  initMap(): void {
+    
     let _loading = this.loadingCtrl.create();
     _loading.present();
 
-    this._GoogleMap.$mapReady.subscribe(map => {
-      this.map_model.init(map);
+    this.$mapReady.subscribe(() => {
       _loading.dismiss();
     });
+
+    // Workarround for init method: try to catch the first idel event after the map cretion (this._mapIdledOnce). The following idle events don't matter.
+    this.map_model.init(this.googleMap);
+    let _ready_listener = this.map_model.map.addListener('idle', () => {
+      console.log("mapReady - IDLE");
+      if (!this._mapIdledOnce) {
+        this.$mapReady.emit(this.map_model.map);
+        this._mapIdledOnce = true;
+        // Stop listening to event, the map is ready
+        google.maps.event.removeListener(_ready_listener);
+      }
+    });
   }
+
+  
+  //ngAfterViewInit(){}
 
   searchPlacesPredictions(query: string){
     let env = this;

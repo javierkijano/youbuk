@@ -1,9 +1,10 @@
+<!--
 <ion-header>
   <ion-navbar>
     <ion-title>{{ 'GOOGLE_MAPS' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
-
+-->
 <ion-content>
   <ion-row no-padding class="map-row">
     <ion-col no-padding class="map-col">
@@ -23,9 +24,7 @@
           </ion-item>
         </ion-list>
       </div>
-      <div class="map-container">
-        <google-map [options]="map_model.map_options"></google-map>
-      </div>
+      <div #mygooglemap class="map-container"></div>
       <ion-scroll [hidden]="map_model.nearby_places.length == 0" scrollX="true" class="nearby-places-container">
         <ion-row class="nearby-places-row">
           <ion-col width-64 class="place-item-outer" *ngFor="let place of map_model.nearby_places" [ngClass]="{'selected-place': place.selected}" (click)="choosePlace(place)">

@@ -1,29 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController, SegmentButton, App, NavParams } from 'ionic-angular';
 import { FollowersPage } from '../followers/followers';
 import { SettingsPage } from '../settings/settings';
 import { ProfileModel } from './profile.model';
 import { ProfileService } from './profile.service';
 import { SocialSharing } from '@ionic-native/social-sharing';
-
 import 'rxjs/Rx';
+//..
+import { MapsPage } from '../../pages/maps/maps';
+import { GoogleMap } from '../../components/google-map/google-map';
+import { GoogleMapsService } from "../../pages/maps/maps.service";
+import { MapsModel, MapPlace } from "../../pages/maps/maps.model";
 
 @Component({
   selector: 'profile-page',
   templateUrl: 'profile.html'
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
+  
   display: string;
   profile: ProfileModel = new ProfileModel();
-
+  tabselection: string = 'map';
+  
+   
   constructor(
     public menu: MenuController,
     public app: App,
     public navParams: NavParams,
     public profileService: ProfileService,
-    public socialSharing: SocialSharing
-  ) {
-    this.display = "list";
+    public socialSharing: SocialSharing,
+    public mapsPage: MapsPage) {
+    
+      this.display = "list";
+  }
+
+  ngOnInit() {
+    let a=0
   }
 
   ionViewDidLoad() {
@@ -63,7 +75,8 @@ export class ProfilePage {
   }
 
   onSegmentSelected(segmentButton: SegmentButton) {
-    // console.log('Segment selected', segmentButton.value);
+    console.log('Tab selected', segmentButton.value);
+    this.tabselection = segmentButton.value
   }
 
   sharePost(post) {

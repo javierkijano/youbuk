@@ -1,3 +1,5 @@
+import {ElementRef } from '@angular/core';
+
 export class MapsModel {
   map: google.maps.Map;
 	map_options: google.maps.MapOptions = {
@@ -19,8 +21,9 @@ export class MapsModel {
 	using_geolocation: boolean = false;
 
 	// https://developers.google.com/maps/documentation/javascript/reference#Map
-	init(map: google.maps.Map) {
-		this.map = map;
+	init(elementRef: ElementRef) {
+		this.map = new google.maps.Map(elementRef.nativeElement, this.map_options);
+
 		// https://developers.google.com/maps/documentation/javascript/reference#DirectionsRenderer
 		this.directions_display = new google.maps.DirectionsRenderer({
 			map: this.map,
