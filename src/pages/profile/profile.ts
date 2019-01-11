@@ -8,7 +8,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import 'rxjs/Rx';
 //..
 import { MapsPage } from '../../pages/maps/maps';
-import { GoogleMap } from '../../components/google-map/google-map';
+//import { GoogleMap } from '../../components/google-map/google-map';
 import { GoogleMapsService } from "../../pages/maps/maps.service";
 import { MapsModel, MapPlace } from "../../pages/maps/maps.model";
 
@@ -28,8 +28,7 @@ export class ProfilePage implements OnInit {
     public app: App,
     public navParams: NavParams,
     public profileService: ProfileService,
-    public socialSharing: SocialSharing,
-    public mapsPage: MapsPage) {
+    public socialSharing: SocialSharing) {
     
       this.display = "list";
   }
