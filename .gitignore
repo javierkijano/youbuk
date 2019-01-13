@@ -6,6 +6,9 @@ plugins/
 typings/
 .vscode/
 ionic.config.json
+/**/.idea
+/**/client_secret*.json
+
 
 
 
