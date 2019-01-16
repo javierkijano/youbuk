@@ -10,6 +10,12 @@ import { ListingService } from './listing.service';
 import moment from 'moment'
 import { SearchServicePage } from '../search-service/search-service';
 
+import {} from '@angular/fire'
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs/Rx';
+
 
 
 
@@ -19,11 +25,40 @@ import { SearchServicePage } from '../search-service/search-service';
 })
 export class ListingPage {
   listing: ListingModel = new ListingModel();
+  categories: any;
+  temp: Observable<any>;
 
   constructor(
     public nav: NavController,
-    public listingService: ListingService
-  ) {}
+    public listingService: ListingService,
+    private fireStore: AngularFirestore
+  ) {
+
+    
+    this.categories = fireStore.collection<any>('CATEGORIES');
+    
+    /* working after first time
+    this.categories.doc('0').ref.onSnapshot(x => {
+      console.log(x.data()['CATEGORY'])
+    })
+    */
+
+    /* working
+    this.categories.doc('0').valueChanges().subscribe(x => {
+      let a = 0
+    })
+    */
+    
+    /* working
+    this.categories.doc('0').ref.onSnapshot(x => {
+      console.log(x.data()['CATEGORY'])
+    })
+    */
+    
+    
+    
+
+  }
 
   onSearchByKeyword(event: any) {
     //alert('onSearchByKeyword: onSearchByKeyword invoked' + event);

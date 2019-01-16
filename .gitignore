@@ -1,3 +1,4 @@
+tests/
 www/
 node_modules/
 platforms/
@@ -8,6 +9,7 @@ typings/
 ionic.config.json
 /**/.idea
 /**/client_secret*.json
+
 
 
 
