@@ -19,7 +19,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly',
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '11UxrTN3r7-8sWfajrWktrhsAB1UG6mb11Giv8BT_laA'
 RANGE = 'A:Z'
-SHEETS = ['CATEGORIES', 'SUBCATEGORIES', 'SERVICES',
+SHEETS = ['CATEGORIES', 'POPULARS', 'SUBCATEGORIES', 'SERVICES',
           'CAT_SUBCAT_SERVICE_MAPPING', 'PROFESSIONAL_INFO',
           'PROFESSIONAL_ADDRESS', 'PROFESIONAL_SERVICES']
 

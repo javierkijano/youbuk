@@ -26,7 +26,6 @@ import { Observable } from 'rxjs/Rx';
 export class ListingPage {
   listing: ListingModel = new ListingModel();
   categories: any;
-  temp: Observable<any>;
 
   constructor(
     public nav: NavController,
@@ -35,7 +34,7 @@ export class ListingPage {
   ) {
 
     
-    this.categories = fireStore.collection<any>('CATEGORIES');
+    //this.categories = fireStore.collection<any>('CATEGORIES');
     
     /* working after first time
     this.categories.doc('0').ref.onSnapshot(x => {
@@ -69,14 +68,20 @@ export class ListingPage {
   }
 
   ionViewDidLoad() {
+    this.listing.banner_image = "./assets/images/listing/600x300banner1.png";
+    this.listing.banner_title = "Sports";
+
     this.listingService
-      .getData()
-      .then(data => {
-        this.listing.banner_image = data.banner_image;
-        this.listing.banner_title = data.banner_title;
-        this.listing.populars = data.populars;
-        this.listing.categories = data.categories;
+      .getPopulars()
+      .subscribe(data => {
+        this.listing.populars = data;
       });
+
+    this.listingService
+      .getCategories()
+      .subscribe(data => {
+        this.listing.categories = data;
+      }); 
   }
 
 
