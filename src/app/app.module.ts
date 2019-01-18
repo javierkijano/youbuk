@@ -111,6 +111,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { SearchServiceService } from '../pages/search-service/search-service.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -260,6 +261,7 @@ export function createTranslateLoader(http: HttpClient) {
     BlogCategoriesPage
   ],
   providers: [
+    SearchServiceService,
     MapsPage,
     FeedService,
     ListingService,

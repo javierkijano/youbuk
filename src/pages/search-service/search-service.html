@@ -20,15 +20,15 @@
     (ionInput)="onSearchInput($event)"
     (ionClear)="onSearchByKeywordClear($event)"
     (ionCancel)="onSearchByKeywordCancel($event)"
-    debounce="1000">
+    debounce="300">
   </ion-searchbar>
   <!--*ngIf="searching"; else !searching"-->
   <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
   </div>
   <ion-list>
-      <ion-item *ngFor="let service of services">
-          {{service.title}}
+      <ion-item *ngFor="let service of searchServiceModel.services">
+          {{service.service}}
       </ion-item>
   </ion-list>
     

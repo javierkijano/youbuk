@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+
+import { ServiceItemModel, SearchServiceModel } from '../search-service/search-service.model';
+import { SearchServiceService} from '../search-service/search-service.service'
+
+
 //import {Observable} from '@angular/core'
 /**
  * Generated class for the SearchServicePage page.
@@ -19,13 +26,15 @@ export class SearchServicePage {
 
   initialText: string
   searchBarText: string
-  services: any
+  //services: any[]
+  searchServiceModel: SearchServiceModel = new SearchServiceModel();
   searchControl: FormControl
   searching: boolean
   
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public searchServiceService: SearchServiceService) {
       this.searching = false
       this.searchBarText = navParams.get("initialText");
       this.searchControl = new FormControl();
@@ -44,13 +53,13 @@ export class SearchServicePage {
   ionViewDidLoad() {
  
     console.log('ionViewDidLoad')
-    this.initializeServiceList()
-    this.setFilteredServices()
+    this.initializeSearchServiceList()
+    //this.setFilteredServices()
     this.searching = false;
     let _this = this
-    this.searchControl.valueChanges.debounceTime(700).subscribe(
+    this.searchControl.valueChanges.debounceTime(400).subscribe(
       () => {
-        _this.searching = true
+        _this.searching = false//true
       }
     );
   }
@@ -58,9 +67,9 @@ export class SearchServicePage {
   onSearchInput(event)
   {
     if (event.data == null) {
-      this.initializeServiceList()
+      this.initializeSearchServiceList()
     }
-    if (this.searching == true)
+    if (this.searching == false)
     {
       this.setFilteredServices()
     }
@@ -70,7 +79,7 @@ export class SearchServicePage {
   onSearchByKeywordCancel(event)
   {
     this.searching = true
-    this.initializeServiceList()
+    this.initializeSearchServiceList()
     this.setFilteredServices()
     this.searching = false
 
@@ -79,7 +88,7 @@ export class SearchServicePage {
   onSearchByKeywordClear(event)
   {
     this.searching = true
-    this.initializeServiceList()
+    this.initializeSearchServiceList()
     this.setFilteredServices()
     this.searching = false
   }
@@ -87,31 +96,23 @@ export class SearchServicePage {
 
   setFilteredServices() {//event) {
  
-    this.services = this.filterServices(this.searchBarText)
+    this.searchServiceModel.services = this.filterServices(this.searchBarText)
 
   }
 
   filterServices(searchBarText) {
-    return this.services.filter((service) => {
-      return service.title.toLowerCase().indexOf(searchBarText.toLowerCase()) > -1;
+    return this.searchServiceModel.services.filter((service) => {
+      return service.service.toLowerCase().indexOf(searchBarText.toLowerCase()) > -1;
     });
   }
-
-
-  initializeServiceList() {
-    this.services = [
-      {title: 'cuidado de personas mayores'},
-      {title: 'cuidado de animales'},
-      {title: 'canguro de niños'},
-      {title: 'reparación de lavadora'},
-      {title: 'reparación de frigorifico'},
-      {title: 'endodoncia'},
-      {title: 'electricista'},
-      {title: 'sastre'}
-    ] 
+ 
+ initializeSearchServiceList() {
+    let _this = this
+    this.searchServiceService
+      .getServices()
+      .subscribe(data => {
+        _this.searchServiceModel.services = data;
+      });
   }
-
-  
-
 
 }
