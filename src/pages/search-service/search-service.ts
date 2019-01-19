@@ -28,6 +28,7 @@ export class SearchServicePage {
   searchBarText: string
   //services: any[]
   searchServiceModel: SearchServiceModel = new SearchServiceModel();
+  selectedServices: string[];
   searchControl: FormControl
   searching: boolean
   
@@ -79,7 +80,7 @@ export class SearchServicePage {
   onSearchByKeywordCancel(event)
   {
     this.searching = true
-    this.initializeSearchServiceList()
+    //this.initializeSearchServiceList()
     this.setFilteredServices()
     this.searching = false
 
@@ -88,7 +89,7 @@ export class SearchServicePage {
   onSearchByKeywordClear(event)
   {
     this.searching = true
-    this.initializeSearchServiceList()
+    //this.initializeSearchServiceList()
     this.setFilteredServices()
     this.searching = false
   }
@@ -96,13 +97,34 @@ export class SearchServicePage {
 
   setFilteredServices() {//event) {
  
-    this.searchServiceModel.services = this.filterServices(this.searchBarText)
+    this.selectedServices = this.filterServices(this.searchBarText).map(x => {return x.service})
 
   }
 
   filterServices(searchBarText) {
     return this.searchServiceModel.services.filter((service) => {
-      return service.service.toLowerCase().indexOf(searchBarText.toLowerCase()) > -1;
+      if (!service.serviceSelected) {
+        return false
+      }
+      let serviceMatched = true
+      let searchBarTextNormalized = searchBarText.normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g, "")
+      searchBarTextNormalized = searchBarTextNormalized.split(' ').filter((x) => {
+        if (x.length > 0) { return x }})
+
+      for (let searchWord of searchBarTextNormalized) {
+        let keywords = service.key_words.split(';').map(x => { return x.normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g, "") })
+        let keywordMatched = false;
+        for (let keyword of keywords) {
+          if(keyword.indexOf(searchWord) > -1) {
+            keywordMatched = true
+          }
+        }
+        if (keywordMatched == false) {
+          serviceMatched = false
+          break
+        }
+      }
+      return serviceMatched
     });
   }
  

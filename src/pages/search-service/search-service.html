@@ -27,8 +27,8 @@
       <ion-spinner></ion-spinner>
   </div>
   <ion-list>
-      <ion-item *ngFor="let service of searchServiceModel.services">
-          {{service.service}}
+      <ion-item *ngFor="let selectedService of selectedServices">
+          {{selectedService}}
       </ion-item>
   </ion-list>
     

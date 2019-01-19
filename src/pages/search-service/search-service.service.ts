@@ -20,6 +20,8 @@ export class SearchServiceService {
       .valueChanges()
       .map(x => {
         return x.map( x => {
+          let y = x as ServiceItemModel
+          y.serviceSelected = true
           return x as ServiceItemModel
           })
         }
