@@ -1,18 +1,18 @@
-@mixin categories-title-style($color){
+@mixin subcategories-title-style($color){
 	display: inline-block;
 	width: 100%;
 	text-align: center;
-	font-size: 4vw;
+	font-size: 3vw;
 	font-weight: 900;
 	letter-spacing: 0.4px;
 	color: $color;
 	margin: 0px;
 }
 
-listing-page {
-	$categories-heading-image-height: 150px;
-	$categories-grid-padding: 10px;
-	$categories-horizontal-list-padding: 10px;
+listing-subcategories-page {
+	$subcategories-heading-image-height: 150px;
+	$subcategories-grid-padding: 10px;
+	$subcategories-horizontal-list-padding: 10px;
 
 	.listing-header
 	{
@@ -26,7 +26,7 @@ listing-page {
 	{
 		.image-heading
 		{
-			height: $categories-heading-image-height;
+			height: $subcategories-heading-image-height;
 
 			.bg-overlay
 			{
@@ -50,13 +50,13 @@ listing-page {
 
 				.main-title
 				{
-					@include categories-title-style($white);
+					@include subcategories-title-style($white);
 					font-size: 10vw;
 				}
 			}
 		}
 
-		.categories-title
+		.subcategories-title
 		{
 			font-size: 1.2rem;
 			font-weight: 400;
@@ -65,7 +65,7 @@ listing-page {
 			margin: 8px 16px 16px;
 		}
 
-		.horizontal-categories
+		.horizontal-subcategories
 		{
 			border-bottom: 10px solid $white-a;
 			@include element-shadow();
@@ -84,20 +84,20 @@ listing-page {
 				}
 			}
 
-			.categories-row
+			.subcategories-row
 			{
 				flex-wrap: nowrap;
 
 				&::after{
 					content: '';
-					flex: 0 0 $categories-horizontal-list-padding;
-			    max-width: $categories-horizontal-list-padding;
+					flex: 0 0 $subcategories-horizontal-list-padding;
+			    max-width: $subcategories-horizontal-list-padding;
 				}
 			}
 
 			.horizontal-item
 			{
-				padding: 0px 0px 0px $categories-horizontal-list-padding;
+				padding: 0px 0px 0px $subcategories-horizontal-list-padding;
 				.card-md {
 					width: 100%;
 				}
@@ -105,16 +105,16 @@ listing-page {
 
 		}
 
-		.grid-categories
+		.grid-subcategories
 		{
-			padding: 0px ($categories-grid-padding/2);
+			padding: 0px ($subcategories-grid-padding/2);
 			flex-wrap: wrap;
 
-			.category-item
+			.subcategory-item
 			{
-				padding: 0px ($categories-grid-padding/2) $categories-grid-padding;
+				padding: 0px ($subcategories-grid-padding/2) $subcategories-grid-padding;
 
-				.category-heading
+				.subcategory-heading
 				{
 					padding-bottom: 100%;
 
@@ -138,9 +138,9 @@ listing-page {
 		  			position: absolute;
 						align-items: center;
 
-						.category-title
+						.subcategory-title
 						{
-							@include categories-title-style($white);
+							@include subcategories-title-style($white);
 						}
 					}
 				}

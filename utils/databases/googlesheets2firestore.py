@@ -19,9 +19,8 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly',
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '11UxrTN3r7-8sWfajrWktrhsAB1UG6mb11Giv8BT_laA'
 RANGE = 'A:Z'
-SHEETS = ['CATEGORIES', 'POPULARS', 'SUBCATEGORIES', 'SERVICES',
-          'CAT_SUBCAT_SERVICE_MAPPING', 'PROFESSIONAL_INFO',
-          'PROFESSIONAL_ADDRESS', 'PROFESIONAL_SERVICES']
+SHEETS = ['CATEGORIES', 'SUBCATEGORIES', 'POPULARS', 'SERVICES']#//,
+          #'PROFESSIONAL_INFO', 'PROFESSIONAL_ADDRESS', 'PROFESSIONAL_SERVICES']
 
 def main():
     """Shows basic usage of the Sheets API.

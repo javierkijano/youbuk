@@ -97,7 +97,7 @@ export class SearchServicePage {
 
   setFilteredServices() {//event) {
  
-    this.selectedServices = this.filterServices(this.searchBarText).map(x => {return x.service})
+    this.selectedServices = this.filterServices(this.searchBarText).map(x => {return x.title})
 
   }
 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import 'rxjs/Rx';
 
-import { ListingModel } from './listing.model';
-import { ListingService } from './listing.service';
+import { SubcategoriesListingModel } from './listing-subcategories.model';
+import { SubcategoriesListingService } from './listing-subcategories.service';
 
 import moment from 'moment'
 import { SearchServicePage } from '../search-service/search-service';
@@ -18,45 +18,23 @@ import { Observable } from 'rxjs/Rx';
 
 
 
-
 @Component({
-  selector: 'listing-page',
-  templateUrl: 'listing.html',
+  selector: 'listing-subcategories-page',
+  templateUrl: 'listing-subcategories.html',
 })
-export class ListingPage {
-  listing: ListingModel = new ListingModel();
-  categories: any;
+export class SubcategoriesListingPage {
+  listing: SubcategoriesListingModel = new SubcategoriesListingModel();
+  subcategories: any;
+  selectedCategory: any;
 
   constructor(
     public nav: NavController,
-    public listingService: ListingService,
-    private fireStore: AngularFirestore
+    public subcategorieslistingService: SubcategoriesListingService,
+    private fireStore: AngularFirestore,
+    public navParams: NavParams
   ) {
-
-    
-    //this.categories = fireStore.collection<any>('CATEGORIES');
-    
-    /* working after first time
-    this.categories.doc('0').ref.onSnapshot(x => {
-      console.log(x.data()['CATEGORY'])
-    })
-    */
-
-    /* working
-    this.categories.doc('0').valueChanges().subscribe(x => {
-      let a = 0
-    })
-    */
-    
-    /* working
-    this.categories.doc('0').ref.onSnapshot(x => {
-      console.log(x.data()['CATEGORY'])
-    })
-    */
-    
-    
-    
-
+    this.selectedCategory = navParams.get("selectedCategory");
+    let a = 0
   }
 
   onSearchByKeyword(event: any) {
@@ -71,23 +49,23 @@ export class ListingPage {
     this.listing.banner_image = "./assets/images/listing/600x300banner1.png";
     this.listing.banner_title = "Sports";
 
-    this.listingService
+    this.subcategorieslistingService
       .getPopulars()
       .subscribe(data => {
         this.listing.populars = data;
       });
 
-    this.listingService
-      .getCategories()
+    this.subcategorieslistingService
+      .getSubcategories(this.selectedCategory)
       .subscribe(data => {
-        this.listing.categories = data;
-      }); 
+        this.listing.subcategories = data;
+      });
   }
 
-
-  goToFeed(category: any) {
-    console.log("Clicked goToFeed", category);
-    this.nav.push(FeedPage, { category: category });
+  /*
+  goToServicesPage(subcategory: any) {
+    console.log("Clicked goToServicesPage", subcategory);
+    this.nav.push(SubcategoriesListingPage, { selectdSubcategory: subcategory });
   }
-
+  */
 }

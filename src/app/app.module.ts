@@ -10,6 +10,8 @@ import { environment } from '../environment/environment';
 import { SearchServicePageModule } from '../pages/search-service/search-service.module';
 //pages
 import { ListingPage } from '../pages/listing/listing';
+import { SubcategoriesListingPage } from '../pages/listing-subcategories/listing-subcategories';
+
 // because loaded as module
 //import { SearchServicePage } from '../pages/search-service/search-service';
 import { FeedPage } from '../pages/feed/feed';
@@ -112,6 +114,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SearchServiceService } from '../pages/search-service/search-service.service';
+import { SubcategoriesListingService } from '../pages/listing-subcategories/listing-subcategories.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -121,6 +124,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     MyApp,
+    SubcategoriesListingPage,
     ListingPage,
     //imported as module
     //SearchServicePage,
@@ -212,6 +216,7 @@ export function createTranslateLoader(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    SubcategoriesListingPage,
     ListingPage,
     FeedPage,
     FollowersPage,
@@ -264,6 +269,7 @@ export function createTranslateLoader(http: HttpClient) {
     SearchServiceService,
     MapsPage,
     FeedService,
+    SubcategoriesListingService,
     ListingService,
     ProfileService,
     NotificationsService,

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http } from '@angular/http';
-import { ListingModel, ListingItemModel } from './listing.model';
+import { SubcategoriesListingModel, SubcategoriesListingItemModel } from './listing-subcategories.model';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import 'rxjs/add/operator/toPromise';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Rx';
 
 
 @Injectable()
-export class ListingService {
+export class SubcategoriesListingService {
 
   listingData: Observable<any[]> 
   
@@ -24,24 +24,27 @@ export class ListingService {
      .catch(this.handleError);
   }
   */
-  getCategories(): Observable<ListingItemModel[]> {
-    return this.fireStore.collection<any>('CATEGORIES')
+
+  getSubcategories(category: any): Observable<SubcategoriesListingItemModel[]> {
+    return this.fireStore.collection(
+      'SUBCATEGORIES',
+      ref => ref.where('category_id', '==', category.category_id))
       .valueChanges()
       .map(x => {
         return x.map( x => {
-          return x as ListingItemModel
+          return x as SubcategoriesListingItemModel
           })
         }
       )
       .catch(this.handleError);
   }
 
-  getPopulars(): Observable<ListingItemModel[]> {
-    return this.fireStore.collection<any>('CATEGORIES')
+  getPopulars(): Observable<SubcategoriesListingItemModel[]> {
+    return this.fireStore.collection<any>('SUBCATEGORIES')
     .valueChanges()
     .map(x => {
       return x.map( x => {
-        return x as ListingItemModel
+        return x as SubcategoriesListingItemModel
         })
       }
     )

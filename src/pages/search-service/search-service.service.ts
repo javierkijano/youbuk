@@ -16,7 +16,7 @@ export class SearchServiceService {
 
   getServices(): Observable<ServiceItemModel[]> {
     let a = 0
-    return this.fireStore.collection<any>('CHILDREN_SERVICES')
+    return this.fireStore.collection<any>('SERVICES')
       .valueChanges()
       .map(x => {
         return x.map( x => {

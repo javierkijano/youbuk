@@ -3,9 +3,10 @@ export class SearchServiceModel {
   }
 
 export class ServiceItemModel {
-    category: string;
-    subcategory: string;
-    service: string;
+    title: string;
     serviceSelected: boolean = true;
     key_words: string;
+    image: string;
+    category: string;
+    subcategory: string;
   }

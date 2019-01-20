@@ -15,6 +15,7 @@ import {} from '@angular/fire'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Rx';
+import { SubcategoriesListingPage } from '../listing-subcategories/listing-subcategories';
 
 
 
@@ -31,40 +32,10 @@ export class ListingPage {
     public nav: NavController,
     public listingService: ListingService,
     private fireStore: AngularFirestore
-  ) {
-
-    
-    //this.categories = fireStore.collection<any>('CATEGORIES');
-    
-    /* working after first time
-    this.categories.doc('0').ref.onSnapshot(x => {
-      console.log(x.data()['CATEGORY'])
-    })
-    */
-
-    /* working
-    this.categories.doc('0').valueChanges().subscribe(x => {
-      let a = 0
-    })
-    */
-    
-    /* working
-    this.categories.doc('0').ref.onSnapshot(x => {
-      console.log(x.data()['CATEGORY'])
-    })
-    */
-    
-    
-    
-
-  }
+  ) { }
 
   onSearchByKeyword(event: any) {
-    //alert('onSearchByKeyword: onSearchByKeyword invoked' + event);
-    //alert('onSearchByKeyword: time: ' + moment().valueOf());
-    console.log("search event in search");
-    this.nav.push(SearchServicePage, {initialText: event.target.value});
-    console.log("coming back from SearchServicePage");
+    this.goToServicesPage(event.target.value)
   }
 
   ionViewDidLoad() {
@@ -85,9 +56,15 @@ export class ListingPage {
   }
 
 
-  goToFeed(category: any) {
-    console.log("Clicked goToFeed", category);
-    this.nav.push(FeedPage, { category: category });
+  goToSubcategoriesPage(category: any) {
+    console.log("Clicked goToSubcategory", category);
+    this.nav.push(SubcategoriesListingPage, { selectedCategory: category });
+  }
+
+  goToServicesPage(searchBarText: string) {
+    console.log("search event in search");
+    this.nav.push(SearchServicePage, {initialText: searchBarText});
+    console.log("coming back from SearchServicePage");
   }
 
 }

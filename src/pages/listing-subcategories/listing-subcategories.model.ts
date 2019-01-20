@@ -1,11 +1,11 @@
-export class ListingModel {
-  populars: Array<ListingItemModel>;
-  categories: Array<ListingItemModel>;
+export class SubcategoriesListingModel {
+  populars: Array<SubcategoriesListingItemModel>;
+  subcategories: Array<SubcategoriesListingItemModel>;
   banner_title: string;
   banner_image: string;
 }
 
-export class ListingItemModel {
+export class SubcategoriesListingItemModel {
   title: string;
   image: string;
 }
