@@ -41,6 +41,7 @@ export class ListingService {
     .valueChanges()
     .map(x => {
       return x.map( x => {
+        x.image = "./assets/images/categories-listing/" + x.image
         return x as ListingItemModel
         })
       }

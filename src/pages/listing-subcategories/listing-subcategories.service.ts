@@ -26,12 +26,13 @@ export class SubcategoriesListingService {
   */
 
   getSubcategories(category: any): Observable<SubcategoriesListingItemModel[]> {
-    return this.fireStore.collection(
+    return this.fireStore.collection<any>(
       'SUBCATEGORIES',
       ref => ref.where('category_id', '==', category.category_id))
       .valueChanges()
       .map(x => {
         return x.map( x => {
+          x.image = "./assets/images/subcategories-listing/" + x.image
           return x as SubcategoriesListingItemModel
           })
         }

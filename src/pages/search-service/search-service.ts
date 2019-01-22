@@ -7,6 +7,7 @@ import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestor
 
 import { ServiceItemModel, SearchServiceModel } from '../search-service/search-service.model';
 import { SearchServiceService} from '../search-service/search-service.service'
+import { FeedPage } from '../feed/feed';
 
 
 //import {Observable} from '@angular/core'
@@ -28,12 +29,12 @@ export class SearchServicePage {
   searchBarText: string
   //services: any[]
   searchServiceModel: SearchServiceModel = new SearchServiceModel();
-  selectedServices: string[];
+  selectedServices: ServiceItemModel[];
   searchControl: FormControl
   searching: boolean
   
   constructor(
-    public navCtrl: NavController,
+    public nav: NavController,
     public navParams: NavParams,
     public searchServiceService: SearchServiceService) {
       this.searching = false
@@ -94,10 +95,9 @@ export class SearchServicePage {
     this.searching = false
   }
 
-
   setFilteredServices() {//event) {
  
-    this.selectedServices = this.filterServices(this.searchBarText).map(x => {return x.title})
+    this.selectedServices = this.filterServices(this.searchBarText)//.map(x => {return x.title})
 
   }
 
@@ -115,7 +115,7 @@ export class SearchServicePage {
         let keywords = service.key_words.split(';').map(x => { return x.normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g, "") })
         let keywordMatched = false;
         for (let keyword of keywords) {
-          if(keyword.indexOf(searchWord) > -1) {
+          if(keyword.indexOf(searchWord) > -1 || searchWord.indexOf(keyword) > -1) {
             keywordMatched = true
           }
         }
@@ -135,6 +135,12 @@ export class SearchServicePage {
       .subscribe(data => {
         _this.searchServiceModel.services = data;
       });
+  }
+
+  clickItem(event, selectedService) {
+    event.stopPropagation();
+    this.nav.push(FeedPage, {category: selectedService});
+    let a = 0
   }
 
 }
