@@ -1,11 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import 'rxjs/Rx';
-
-import { ListingModel } from './listing.model';
-import { ListingService } from './listing.service';
 
 import moment from 'moment'
 import { SearchServicePage } from '../search-service/search-service';
@@ -17,6 +14,8 @@ import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestor
 import { Observable } from 'rxjs/Rx';
 import { SubcategoriesListingPage } from '../listing-subcategories/listing-subcategories';
 
+import { PopularsModel, PopularsItemModel, CategoriesModel, CategoriesItemModel } from '../../providers/app-data/app-data.model';
+import { AppDataService } from '../../providers/app-data/app-data.service';
 
 
 
@@ -24,37 +23,28 @@ import { SubcategoriesListingPage } from '../listing-subcategories/listing-subca
   selector: 'listing-page',
   templateUrl: 'listing.html',
 })
-export class ListingPage {
-  listing: ListingModel = new ListingModel();
+export class ListingPage implements OnInit {
+  categoriesModel: CategoriesModel;
+  selectedCategories: CategoriesItemModel[];
+  popularsModel: PopularsModel;
+  selectedPopulars: PopularsItemModel[];
   categories: any;
-
+  
   constructor(
     public nav: NavController,
-    public listingService: ListingService,
-    private fireStore: AngularFirestore
+    public appData: AppDataService
   ) { }
+
+  ngOnInit() {
+    this.categoriesModel = this.appData.getCategoriesModel()
+    this.popularsModel = this.appData.getPopularsModel()
+  }
 
   onSearchByKeyword(event: any) {
     this.goToServicesPage(event.target.value)
   }
 
-  ionViewDidLoad() {
-    this.listing.banner_image = "./assets/images/listing/600x300banner1.png";
-    this.listing.banner_title = "Sports";
-
-    this.listingService
-      .getPopulars()
-      .subscribe(data => {
-        this.listing.populars = data;
-      });
-
-    this.listingService
-      .getCategories()
-      .subscribe(data => {
-        this.listing.categories = data;
-      }); 
-  }
-
+  ionViewDidLoad() {}
 
   goToSubcategoriesPage(category: any) {
     console.log("Clicked goToSubcategory", category);

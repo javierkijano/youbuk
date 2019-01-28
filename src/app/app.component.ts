@@ -14,7 +14,7 @@ import { FirebaseLoginPage } from '../pages/firebase-integration/firebase-login/
 import { WordpressMenuPage } from '../pages/wordpress-integration/wordpress-menu/wordpress-menu';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-
+import { AppDataService } from '../providers/app-data/app-data.service'
 @Component({
   selector: 'app-root',
   templateUrl: 'app.html'
@@ -38,7 +38,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public statusBar: StatusBar,
     public translate: TranslateService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public appData: AppDataService
   ) {
     translate.setDefaultLang('en');
     translate.use('en');

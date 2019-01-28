@@ -18,7 +18,7 @@
   
   <h4 class="subcategories-title">{{selectedCategory.title | translate}}</h4>
   <ion-row class="grid-subcategories">
-    <ion-col col-4 class="subcategory-item" *ngFor="let subcategory of listing.subcategories">
+    <ion-col col-4 class="subcategory-item" *ngFor="let subcategory of selectedSubcategories">
       <background-image tappable class="subcategory-heading" [src]="subcategory.image" (click)="goToFeed(subcategory)">
         <ion-row class="heading-row">
           <ion-col no-padding width-100>

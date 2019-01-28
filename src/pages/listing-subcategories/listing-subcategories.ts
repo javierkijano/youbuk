@@ -1,40 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import 'rxjs/Rx';
 
-import { SubcategoriesListingModel } from './listing-subcategories.model';
-import { SubcategoriesListingService } from './listing-subcategories.service';
+import { PopularsModel, PopularsItemModel, SubcategoriesModel, SubcategoriesItemModel } from '../../providers/app-data/app-data.model';
+import { AppDataService } from '../../providers/app-data/app-data.service';
 
 import moment from 'moment'
 import { SearchServicePage } from '../search-service/search-service';
 
 import {} from '@angular/fire'
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/Rx';
-
-
+import {Observable} from 'rxjs'
 
 @Component({
   selector: 'listing-subcategories-page',
   templateUrl: 'listing-subcategories.html',
 })
-export class SubcategoriesListingPage {
-  listing: SubcategoriesListingModel = new SubcategoriesListingModel();
-  subcategories: any;
+export class SubcategoriesListingPage implements OnInit {
+  subcategoriesModel: SubcategoriesModel;
+  selectedSubcategories: SubcategoriesItemModel[];
+  popularsModel: PopularsModel;
+  selectedPopulars: PopularsItemModel[];
   selectedCategory: any;
 
   constructor(
     public nav: NavController,
-    public subcategorieslistingService: SubcategoriesListingService,
-    private fireStore: AngularFirestore,
+    public appData: AppDataService,
     public navParams: NavParams
   ) {
+
     this.selectedCategory = navParams.get("selectedCategory");
-    let a = 0
+    
+  }
+
+  ngOnInit() {
+    this.subcategoriesModel = this.appData.getSubcategoriesModel()
+    this.selectedSubcategories = this.subcategoriesModel.subcategories
+      .filter(x => { return x.category_id == this.selectedCategory.category_id})
+    this.popularsModel = this.appData.getPopularsModel()
   }
 
   onSearchByKeyword(event: any) {
@@ -45,22 +49,7 @@ export class SubcategoriesListingPage {
     console.log("coming back from SearchServicePage");
   }
 
-  ionViewDidLoad() {
-    this.listing.banner_image = "./assets/images/listing/600x300banner1.png";
-    this.listing.banner_title = "Sports";
-
-    this.subcategorieslistingService
-      .getPopulars()
-      .subscribe(data => {
-        this.listing.populars = data;
-      });
-
-    this.subcategorieslistingService
-      .getSubcategories(this.selectedCategory)
-      .subscribe(data => {
-        this.listing.subcategories = data;
-      });
-  }
+  ionViewDidLoad() { }
 
   /*
   goToServicesPage(subcategory: any) {

@@ -76,6 +76,7 @@ import { VideoPlayerModule } from '../components/video-player/video-player.modul
 import { ValidatorsModule } from '../components/validators/validators.module';
 
 //services
+import { AppDataService } from '../providers/app-data/app-data.service'
 import { FeedService } from '../pages/feed/feed.service';
 import { ListingService } from '../pages/listing/listing.service';
 import { ProfileService } from '../pages/profile/profile.service';
@@ -91,6 +92,7 @@ import { FirebaseService } from '../pages/firebase-integration/firebase-integrat
 import { FirebaseAuthService } from '../pages/firebase-integration/firebase-auth.service';
 import { WordpressService } from '../pages/wordpress-integration/wordpress-integration.service';
 import { LanguageService } from '../providers/language/language.service';
+
 
 // Ionic Native Plugins
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -113,7 +115,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { SearchServiceService } from '../pages/search-service/search-service.service';
+//import { SearchServiceService } from '../pages/search-service/search-service.service';
 import { SubcategoriesListingService } from '../pages/listing-subcategories/listing-subcategories.service';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -213,7 +215,7 @@ export function createTranslateLoader(http: HttpClient) {
 		VideoPlayerModule,
 		ValidatorsModule
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [ IonicApp ],
   entryComponents: [
     MyApp,
     SubcategoriesListingPage,
@@ -266,7 +268,7 @@ export function createTranslateLoader(http: HttpClient) {
     BlogCategoriesPage
   ],
   providers: [
-    SearchServiceService,
+    AppDataService,
     MapsPage,
     FeedService,
     SubcategoriesListingService,

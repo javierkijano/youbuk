@@ -4,6 +4,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from httplib2 import Http
 from oauth2client import file, client, tools
 import json
+import pandas as pd
 
 from google.cloud import firestore
 
@@ -17,10 +18,21 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly',
            'https://www.googleapis.com/auth/datastore']
 
 # The ID and range of a sample spreadsheet.
-SPREADSHEET_ID = '11UxrTN3r7-8sWfajrWktrhsAB1UG6mb11Giv8BT_laA'
+SPREADSHEET_ID = '1b_p9zgyor0A0SJi5bMiqK-xgpFk43WscKrtWQ9gtQZs'
 RANGE = 'A:Z'
-SHEETS = ['CATEGORIES', 'SUBCATEGORIES', 'POPULARS', 'SERVICES']#//,
-          #'PROFESSIONAL_INFO', 'PROFESSIONAL_ADDRESS', 'PROFESSIONAL_SERVICES']
+SHEETS = [
+    #'CATEGORIES',
+#    'SUBCATEGORIES',
+#    'SERVICES',
+#    'SERVICES_IMAGES',
+    'SERVICES_KEYWORDS',
+#    'POPULARS',
+#    'PROFESSIONAL_INFO',
+#    'PROFESSIONAL_ADDRESS',
+#    'PROFESSIONAL_SERVICES',
+#    'PROFESSIONAL_SERVICES_OPTIONS'#,
+#    'USERS_INFO'
+]
 
 def main():
     """Shows basic usage of the Sheets API.
@@ -57,9 +69,12 @@ def main():
         print('... extracting sheet: ' + collection)
         cols = data[collection][0]
         for row_i, row in enumerate(data[collection][1:len(data[collection])]):
+            if len(row) < len(cols):
+                row = row + (len(cols)-len(row))*["notdefined"]
             document = dict(zip(cols, [str(row_el) for row_el in row]))
             doc_ref = db.collection(collection).document(str(row_i))
             doc_ref.set(document)
+            a=0
 
 if __name__ == '__main__':
     main()
