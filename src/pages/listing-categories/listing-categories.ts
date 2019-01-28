@@ -9,9 +9,6 @@ import { SearchServicePage } from '../search-service/search-service';
 
 import {} from '@angular/fire'
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/Rx';
 import { SubcategoriesListingPage } from '../listing-subcategories/listing-subcategories';
 
 import { PopularsModel, PopularsItemModel, CategoriesModel, CategoriesItemModel } from '../../providers/app-data/app-data.model';
@@ -20,10 +17,10 @@ import { AppDataService } from '../../providers/app-data/app-data.service';
 
 
 @Component({
-  selector: 'listing-page',
-  templateUrl: 'listing.html',
+  selector: 'listing-categories-page',
+  templateUrl: 'listing-categories.html',
 })
-export class ListingPage implements OnInit {
+export class ListingCategoriesPage implements OnInit {
   categoriesModel: CategoriesModel;
   selectedCategories: CategoriesItemModel[];
   popularsModel: PopularsModel;

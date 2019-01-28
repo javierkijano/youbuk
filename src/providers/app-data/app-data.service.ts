@@ -32,7 +32,34 @@ export class AppDataService {
 
     let _this = this
     
-    //remember it is not possible to have ngOnInit in services
+    // remember it is not possible to have ngOnInit in services
+
+    // enable persistence
+    /*
+    fireStore.firestore
+      .enablePersistence()
+      .catch(function(err) {
+        if (err.code == 'failed-precondition') {
+            // Multiple tabs open, persistence can only be enabled
+            // in one tab at a a time.
+            // ...
+        } else if (err.code == 'unimplemented') {
+            // The current browser does not support all of the
+            // features required to enable persistence
+            // ...
+        }
+      });
+    */
+
+    // disable persitence
+    /*
+    firebase.firestore().disableNetwork()
+      .then(function() {
+        // Do offline actions
+        // ...
+    });
+    */
+
 
     //load categories model
     _this.getCategories().subscribe(

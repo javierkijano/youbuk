@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { SchedulePage } from '../schedule/schedule';
-import { List1Page } from '../list-1/list-1';
+import { ListingServicesPage } from '../listing-services/listing-services';
 import { List2Page } from '../list-2/list-2';
 import { GridPage } from '../grid/grid';
 import { NotificationsPage } from '../notifications/notifications';
@@ -35,7 +35,7 @@ export class LayoutsPage {
     ).subscribe(data => {
       this.items = [
         { title: data[0], component: SchedulePage },
-        { title: data[1], note: '(Big)', component: List1Page },
+        { title: data[1], note: '(Big)', component: ListingServicesPage },
         { title: data[2], note: '(Mini)', component: List2Page },
         { title: data[3], component: GridPage },
         { title: data[4], component: NotificationsPage },

@@ -3,16 +3,16 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { List1Model } from './list-1.model';
+import { ListingServicesModel } from './listing-services.model';
 
 @Injectable()
-export class List1Service {
+export class ListingServicesService {
   constructor(public http: Http) {}
 
-  getData(): Promise<List1Model> {
+  getData(): Promise<ListingServicesModel> {
     return this.http.get('./assets/example_data/lists.json')
      .toPromise()
-     .then(response => response.json() as List1Model)
+     .then(response => response.json() as ListingServicesModel)
      .catch(this.handleError);
   }
 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
-import {  } from '../search-service/search-service.model';
-import { FeedPage } from '../feed/feed';
+import { ListingServicesPage } from '../listing-services/listing-services';
 import { AppDataService } from '../../providers/app-data/app-data.service';
 import { ServicesModel, ServicesItemModel } from '../../providers/app-data/app-data.model'
 import { Observable} from 'rxjs'
@@ -161,7 +160,7 @@ export class SearchServicePage implements OnInit {
 
   clickItem(event, selectedService) {
     event.stopPropagation();
-    this.nav.push(FeedPage, {category: selectedService});
+    this.nav.push(ListingServicesPage, {selectedService: selectedService});
     let a = 0
   }
 

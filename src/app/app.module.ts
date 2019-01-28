@@ -9,7 +9,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
 import { SearchServicePageModule } from '../pages/search-service/search-service.module';
 //pages
-import { ListingPage } from '../pages/listing/listing';
+import { ListingCategoriesPage } from '../pages/listing-categories/listing-categories';
 import { SubcategoriesListingPage } from '../pages/listing-subcategories/listing-subcategories';
 
 // because loaded as module
@@ -28,7 +28,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { AdsPage } from '../pages/ads/ads';
-import { List1Page } from '../pages/list-1/list-1';
+import { ListingServicesPage } from '../pages/listing-services/listing-services';
 import { List2Page } from '../pages/list-2/list-2';
 import { GridPage } from '../pages/grid/grid';
 import { FormLayoutPage } from '../pages/form-layout/form-layout';
@@ -78,10 +78,9 @@ import { ValidatorsModule } from '../components/validators/validators.module';
 //services
 import { AppDataService } from '../providers/app-data/app-data.service'
 import { FeedService } from '../pages/feed/feed.service';
-import { ListingService } from '../pages/listing/listing.service';
 import { ProfileService } from '../pages/profile/profile.service';
 import { NotificationsService } from '../pages/notifications/notifications.service';
-import { List1Service } from '../pages/list-1/list-1.service';
+import { ListingServicesService } from '../pages/listing-services/listing-services.service';
 import { List2Service } from '../pages/list-2/list-2.service';
 import { ScheduleService } from '../pages/schedule/schedule.service';
 import { FacebookLoginService } from '../pages/facebook-login/facebook-login.service';
@@ -116,7 +115,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 //import { SearchServiceService } from '../pages/search-service/search-service.service';
-import { SubcategoriesListingService } from '../pages/listing-subcategories/listing-subcategories.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -127,7 +125,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     MyApp,
     SubcategoriesListingPage,
-    ListingPage,
+    ListingCategoriesPage,
     //imported as module
     //SearchServicePage,
     FeedPage,
@@ -143,7 +141,7 @@ export function createTranslateLoader(http: HttpClient) {
     SignupPage,
     ForgotPasswordPage,
     SchedulePage,
-    List1Page,
+    ListingServicesPage,
     List2Page,
     GridPage,
     FormLayoutPage,
@@ -219,7 +217,7 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [
     MyApp,
     SubcategoriesListingPage,
-    ListingPage,
+    ListingCategoriesPage,
     FeedPage,
     FollowersPage,
     LayoutsPage,
@@ -233,7 +231,7 @@ export function createTranslateLoader(http: HttpClient) {
     ForgotPasswordPage,
     SignupPage,
     SchedulePage,
-    List1Page,
+    ListingServicesPage,
     List2Page,
     GridPage,
     FormLayoutPage,
@@ -271,11 +269,9 @@ export function createTranslateLoader(http: HttpClient) {
     AppDataService,
     MapsPage,
     FeedService,
-    SubcategoriesListingService,
-    ListingService,
     ProfileService,
     NotificationsService,
-    List1Service,
+    ListingServicesService,
     List2Service,
     ScheduleService,
     //functionalities
